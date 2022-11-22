@@ -1,5 +1,5 @@
 #include <iostream>
-#include "busgraph.h"
+#include "flightgraph.h"
 
 using namespace std;
 
