@@ -2,7 +2,7 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
-#include "Flight.h" //class yet to be made
+// #include "Flight.h" //class yet to be made
 
 using namespace std;
 
@@ -77,12 +77,12 @@ Airport::Airport(string &line) {
 
 //getters and setters
 
-int Airport::getID() { return airportID_; }
-string Airport::getName() { return name_; }
-string Airport::getCity() { return city_; }
-string Airport::getCountry() { return country_; }
-double Airport::getLatitude() { return latitude_; }
-double Airport::getLongitude() { return longitude_; }
+int Airport::getID() const { return airportID_; }
+string Airport::getName() const { return name_; }
+string Airport::getCity() const { return city_; }
+string Airport::getCountry() const { return country_; }
+double Airport::getLatitude() const { return latitude_; }
+double Airport::getLongitude() const { return longitude_; }
 
 void Airport::setID(int airportID) { airportID_ = airportID; }
 void Airport::setName(string name) { name_ = name; }
@@ -90,3 +90,20 @@ void Airport::setCity(string city) { city_ = city; }
 void Airport::setCountry(string country) { country_ = country; }
 void Airport::setLatitude(double latitude) { latitude_ = latitude; }
 void Airport::setLongitude(double longitude) { longitude_ = longitude; }
+
+
+// calculates the distance between two latitude/longitude coordinates in miles
+// algorithm from https://www.geeksforgeeks.org/program-distance-two-points-earth/
+double Airport::distanceTo(Airport other) {
+    double conversionToRadians = (M_PI) / 180;
+    double lat1Rad = latitude_ * conversionToRadians;
+    double long1Rad = longitude_ * conversionToRadians;
+    double lat2Rad = other.getLatitude() * conversionToRadians;
+    double long2Rad = other.getLongitude() * conversionToRadians;
+
+    double distance = pow(sin((lat2Rad - lat1Rad) / 2), 2) +
+                          cos(lat1Rad) * cos(lat2Rad) *
+                          pow(sin((long2Rad - long1Rad) / 2), 2);
+    distance = 2 * 6371 * asin(sqrt(distance));
+    return distance;
+}

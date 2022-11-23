@@ -1,5 +1,7 @@
 #include <iostream>
 #include "flightgraph.h"
+#include "Flight.h"
+#include "Airport.h"
 
 using namespace std;
 

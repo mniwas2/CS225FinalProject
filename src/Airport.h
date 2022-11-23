@@ -5,7 +5,7 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
-#include "Flight.h" //class yet to be made
+// #include "Flight.h" //class yet to be made
 using namespace std;
 
 class Airport {
@@ -27,12 +27,17 @@ class Airport {
         void setLatitude(double latitude);
         void setLongitude(double longitude);
 
-        int getID();
-        string getName();
-        string getCity();
-        string getCountry();
-        double getLatitude();
-        double getLongitude();
+        int getID() const;
+        string getName() const;
+        string getCity() const;
+        string getCountry() const;
+        double getLatitude() const;
+        double getLongitude() const;
+
+        // calculate the distance between two airports by latitude and longitude in miles
+        double distanceTo(Airport other);
+
+        bool operator==(const Airport& other) const { return airportID_ == other.getID(); };
 
         //each airport will have a map of edges to keep track of the airports it has flights to.
 
