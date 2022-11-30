@@ -23,7 +23,9 @@ class Flight {
         int getStops() const { return stops_; };
         double getDistance() const { return distance_; };
 
+        void setStart(int startID) { start_id_ = startID; };
         void setStart(int startID, double distance);
+        void setDestination(int destinationID) { destination_id_ = destinationID; };
         void setDestination(int destinationID, double distance);
         void setAirline(string airline) { airline_ = airline; };
         void setAirlineID(int airline_id) { airline_id_ = airline_id; };
