@@ -15,12 +15,23 @@
 
 using namespace std;
 
-TEST_CASE("BFS1", "[BFS]") {
+TEST_CASE("getAirport", "[Data]") {
     Graph test = Graph("data/airports.txt","data/routes.txt");
-    vector<int> expected = vector<int>({2811, 2833});
-    vector<Flight> actual = test.getTraversal(2811, 2833);
-    REQUIRE(compareVects(expected, actual)==true);
+    Airport expected = Airport(3749,"Barysiai Airport","Barysiai","Lithuania",56.07059860229492,23.5580997467041);
+    Airport actual = test.getAirport(3749);
+    REQUIRE(expected.getName() == actual.getName());
+    REQUIRE(expected.getCity() == actual.getCity());
+    REQUIRE(expected.getCountry() == actual.getCountry());
+    REQUIRE(expected.getLatitude() == actual.getLatitude());
+    REQUIRE(expected.getLongitude() == actual.getLongitude());
 }
+
+// TEST_CASE("BFS1", "[BFS]") {
+//     Graph test = Graph("data/airports.txt","data/routes.txt");
+//     vector<int> expected = vector<int>({2811, 2833});
+//     vector<Flight> actual = test.getTraversal(2811, 2833);
+//     REQUIRE(compareVects(expected, actual)==true);
+// }
 
 bool compareVects(const vector<int>& v1, const vector<Flight>& v2) {
     if (v1.size() + 1 != v2.size()) {
