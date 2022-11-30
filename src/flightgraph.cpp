@@ -1,6 +1,7 @@
 #include "flightgraph.h"
 #include <fstream>
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -33,17 +34,19 @@ void Graph::readData(string airportFile, string flightFile) {
         while ( getline(flightf, line) ) {
             // create Flight objects and populate flight_ adjacency list
             Flight flight = Flight(line);
-            flight.setStart(airportIDMap[flight.getStartID()]);
-            flight.setDestination(airportIDMap[flight.getDestinationID()]);
-            int flightstartID = flight.getStartID();
-            flight.setDistance(airports_[flightstartID].distanceTo(airports_[flight.getDestinationID()]));
-            if (!flights_[flightstartID].empty()) {
-                vector<Flight>& flights = flights_[flightstartID];
-                if (std::find(flights.begin(), flights.end(), flight) == flights.end()) {
-                    flights_[flightstartID].push_back(flight);
+            if (flight.getStartID() != -1) {
+                flight.setStart(airportIDMap[flight.getStartID()]);
+                flight.setDestination(airportIDMap[flight.getDestinationID()]);
+                int flightstartID = flight.getStartID();
+                flight.setDistance(airports_[flightstartID].distanceTo(airports_[flight.getDestinationID()]));
+                if (!flights_[flightstartID].empty()) {
+                    vector<Flight>& flights = flights_[flightstartID];
+                    if (std::find(flights.begin(), flights.end(), flight) == flights.end()) {
+                        flights_[flightstartID].push_back(flight);
+                    }
+                } else {
+                    flights_[flightstartID] = vector<Flight>({flight});
                 }
-            } else {
-                flights_[flightstartID] = vector<Flight>({flight});
             }
         }
         flightf.close();
