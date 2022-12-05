@@ -26,12 +26,26 @@ TEST_CASE("getAirport", "[Data]") {
     REQUIRE(expected.getLongitude() == actual.getLongitude());
 }
 
-// TEST_CASE("BFS1", "[BFS]") {
-//     Graph test = Graph("data/airports.txt","data/routes.txt");
-//     vector<int> expected = vector<int>({2811, 2833});
-//     vector<Flight> actual = test.getTraversal(2811, 2833);
-//     REQUIRE(compareVects(expected, actual)==true);
-// }
+TEST_CASE("BFS1", "[BFS]") {
+    Graph test = Graph("test/testairports.txt","test/testroutes.txt");
+    vector<int> expected = vector<int>({2811, 2833});
+    vector<Flight> actual = test.BFS(2811, 2833);
+    REQUIRE(compareVects(expected, actual)==true);
+}
+
+TEST_CASE("BFS2", "[BFS]") {
+    Graph test = Graph("tests/testairports.txt","tests/testflights.txt");
+    vector<int> expected = vector<int>({1, 3, 5});
+    vector<Flight> actual = test.BFS(1, 5);
+    REQUIRE(compareVects(expected, actual)==true);
+}
+
+TEST_CASE("Dijkstras1", "[D1]") {
+    Graph test = Graph("tests/testairports.txt","tests/testflights.txt");
+    vector<int> expected = vector<int>({1, 4, 2, 5});
+    vector<Flight> actual = test.Dijkstra(1, 5); // fix this when Dijkstra is implemented
+    REQUIRE(compareVects(expected, actual)==true);
+}
 
 bool compareVects(const vector<int>& v1, const vector<Flight>& v2) {
     if (v1.size() + 1 != v2.size()) {
