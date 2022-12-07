@@ -21,6 +21,8 @@ class Graph {
     // load airport and flight data information from files
     void readData(string airportFile, string flightFile);
 
+    vector<Flight> Dijkstra(int source, int destination);
+
     private:
     // map storing airports with the airport id as the key, allowing for fast look-up of airports based on airport id
     unordered_map<int, Airport> airports_;
