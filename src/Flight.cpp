@@ -84,8 +84,17 @@ bool Flight::operator<(const Flight& other) const {
     return distance_ < other.distance_;
 }
 
+bool Flight::operator>(const Flight& other) const {
+    return distance_ > other.distance_;
+}
+
 bool Flight::operator==(const Flight& other) const {
     return start_id_ == other.start_id_ 
     && destination_id_ == other.destination_id_
     && stops_ == other.stops_;
+}
+
+std::ostream& operator<< (std::ostream& stream, const Flight& flight) {
+    stream<<"{"<<flight.start_id_<<","<<flight.destination_id_<<"}";
+    return stream;
 }
