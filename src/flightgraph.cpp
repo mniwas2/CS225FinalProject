@@ -114,12 +114,48 @@ vector<Flight> Graph::Dijkstra(int source, int destination) {
             reverseResult.push_back(mindistance.at(prevNode - 1).lastflight);
             prevNode = reverseResult.at(reverseResult.size() - 1).getStartID();
         }
-        for (unsigned i = 0; i < reverseResult.size(); i++) {
-            std::cout<<reverseResult.at(i)<<", ";
-        }
-        std::cout<<std::endl;
+        // for (unsigned i = 0; i < reverseResult.size(); i++) {
+        //     std::cout<<reverseResult.at(i)<<", ";
+        // }
+        // std::cout<<std::endl;
         std::reverse(reverseResult.begin(), reverseResult.end());
         return reverseResult;
     }
     return vector<Flight>();
+}
+
+std::vector<Flight> Graph::BFS(int source, int destination)
+{
+    Airport start = airports_[source];
+    Airport end = airports_[destination];
+    std::vector<int> visited;
+    visited.resize(airports_.size());
+    std::queue<Airport> q;
+    visited[start.getID()] = 1;
+    q.push(start);
+    Airport v;
+    std::vector<Flight> toReturn;
+    while (!q.empty())
+    {
+        v = q.front();
+        q.pop();
+        if (v.getID() == end.getID()) {
+            break;
+            //we have reached the end of our BFS!
+        }
+        for (Flight f : flights_[v.getID()])
+        {
+            // for all flights at airport v...
+            int id = f.getDestinationID();
+            Airport dest = airports_[f.getDestinationID()];
+            if (visited[id] == 0)
+            {
+                // unexplored node
+                visited[id] = 1;
+                toReturn.push_back(f);
+                q.push(dest);
+            }
+        }
+    }
+    return toReturn;
 }
