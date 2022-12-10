@@ -26,10 +26,13 @@ void Graph::readData(string airportFile, string flightFile)
         {
             // create Airport objects and populate airports_ map of airport IDs and the corresponding airport
             Airport airport = Airport(line);
-            airportIDMap[airport.getID()] = linenum;
-            airport.setID(linenum);
-            airports_[airport.getID()] = airport;
-            linenum++;
+            if (airport.getID() != -1) {
+                airportIDMap[airport.getID()] = linenum;
+                airport.setID(linenum);
+                airports_[airport.getID()] = airport;
+                airportsIATA_[airport.getIATA()] = airport.getID();
+                linenum++;
+            }
         }
         airportf.close();
     }
@@ -45,8 +48,8 @@ void Graph::readData(string airportFile, string flightFile)
         {
             // create Flight objects and populate flight_ adjacency list
             Flight flight = Flight(line);
-            if (flight.getStartID() != -1)
-            {
+
+            if (flight.getStartID() != -1 && airportIDMap.find(flight.getStartID()) != airportIDMap.end() && airportIDMap.find(flight.getDestinationID()) != airportIDMap.end()) {
                 flight.setStart(airportIDMap[flight.getStartID()]);
                 flight.setDestination(airportIDMap[flight.getDestinationID()]);
                 int flightstartID = flight.getStartID();

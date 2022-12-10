@@ -17,6 +17,7 @@ class Graph {
 
     // returns a reference to the airport in the graph from the airport id
     Airport& getAirport(int airport_id) {return airports_[airport_id];};
+    int getAirportID(string airport_IATA) {return airportsIATA_[airport_IATA];};
 
     // load airport and flight data information from files
     void readData(string airportFile, string flightFile);
@@ -26,6 +27,7 @@ class Graph {
 
     private:
     // map storing airports with the airport id as the key, allowing for fast look-up of airports based on airport id
+    unordered_map<string, int> airportsIATA_;
     unordered_map<int, Airport> airports_;
     unordered_map<int, vector<Flight>> flights_;
 };

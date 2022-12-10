@@ -28,7 +28,7 @@ bool compareVects(const vector<int>& v1, const vector<Flight>& v2) {
 
 TEST_CASE("getAirportSmall", "[Data]") {
     Graph test = Graph("tests/testairports.txt","tests/testflights.txt");
-    Airport expected = Airport(1,"A","A","A",47.808543,-111.235683);
+    Airport expected = Airport(1,"A","A","A","XXX",47.808543,-111.235683);
     Airport actual = test.getAirport(1);
     REQUIRE(expected.getName() == actual.getName());
     REQUIRE(expected.getCity() == actual.getCity());
@@ -39,13 +39,14 @@ TEST_CASE("getAirportSmall", "[Data]") {
 
 TEST_CASE("getAirport", "[Data]") {
     Graph test = Graph("data/airports.txt","data/routes.txt");
-    Airport expected = Airport(3749,"Barysiai Airport","Barysiai","Lithuania",56.07059860229492,23.5580997467041);
-    Airport actual = test.getAirport(3749);
+    Airport expected = Airport(3129,"Barysiai Airport","Barysiai","Lithuania", "HLJ",56.07059860229492,23.5580997467041);
+    Airport actual = test.getAirport(3129);
     REQUIRE(expected.getName() == actual.getName());
     REQUIRE(expected.getCity() == actual.getCity());
     REQUIRE(expected.getCountry() == actual.getCountry());
     REQUIRE(expected.getLatitude() == actual.getLatitude());
     REQUIRE(expected.getLongitude() == actual.getLongitude());
+    REQUIRE(expected.getID() == test.getAirportID("HLJ"));
 }
 
 TEST_CASE("BFS1", "[BFS]") {
@@ -59,9 +60,6 @@ TEST_CASE("BFS2", "[BFS]") {
     Graph test = Graph("tests/testairports.txt","tests/testflights.txt");
     vector<int> expected = vector<int>({1, 3, 5});
     vector<Flight> actual = test.BFS(1, 5);
-    REQUIRE(compareVects(expected, actual)==true);
-    expected = vector<int>({1, 3, 5});
-    actual = test.BFS(1, 5);
     REQUIRE(compareVects(expected, actual)==true);
 }
 
