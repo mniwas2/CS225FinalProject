@@ -83,8 +83,12 @@ void Graph::readData(string airportFile, string flightFile)
             // }
         }
         flightf.close();
+    } else
+    {
+        std::cout << "flight file not open" << std::endl;
     }
 }
+
 Flight Graph::getDirectFlight(int startID, int endID) {
     Flight f = Flight();
     vector<Flight> flights = getFlights(startID);
@@ -95,11 +99,7 @@ Flight Graph::getDirectFlight(int startID, int endID) {
     }
     return f;
 }
-    else
-    {
-        std::cout << "flight file not open" << std::endl;
-    }
-}
+
 
 vector<Flight> Graph::Dijkstra(int source, int destination)
 {

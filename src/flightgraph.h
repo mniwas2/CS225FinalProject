@@ -25,9 +25,6 @@ class Graph {
     //vector<int> getTopTen() {return topten;};
     int getAirportID(string airport_IATA) {return airportsIATA_[airport_IATA];};
 
-    // load airport and flight data information from files
-    void readData(string airportFile, string flightFile);
-
     vector<Flight> Dijkstra(int source, int destination);
     std::vector<Flight> BFS(int source, int destination);
 
