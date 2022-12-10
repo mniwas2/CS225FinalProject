@@ -90,8 +90,7 @@ bool Flight::operator>(const Flight& other) const {
 
 bool Flight::operator==(const Flight& other) const {
     return start_id_ == other.start_id_ 
-    && destination_id_ == other.destination_id_
-    && stops_ == other.stops_;
+    && destination_id_ == other.destination_id_;
 }
 
 std::ostream& operator<< (std::ostream& stream, const Flight& flight) {

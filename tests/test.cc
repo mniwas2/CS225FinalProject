@@ -16,6 +16,7 @@
 using namespace std;
 
 bool compareVects(const vector<int>& v1, const vector<Flight>& v2) {
+
     REQUIRE (v1.size() - 1 == v2.size());
     for (unsigned i = 0; i<v2.size(); i++) {
         if (!(v1.at(i) == v2.at(i).getStartID()) && v1.at(i + 1) == v2.at(i).getDestinationID()) {
