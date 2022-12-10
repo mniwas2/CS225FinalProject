@@ -17,6 +17,12 @@ class Graph {
 
     // returns a reference to the airport in the graph from the airport id
     Airport& getAirport(int airport_id) {return airports_[airport_id];};
+    vector<Flight>& getFlights(int flight_id) {return flights_[flight_id];};
+    Flight getDirectFlight(int startID, int endID);
+
+    // load airport and flight data information from files
+    void readData(string airportFile, string flightFile);
+    //vector<int> getTopTen() {return topten;};
     int getAirportID(string airport_IATA) {return airportsIATA_[airport_IATA];};
 
     // load airport and flight data information from files
@@ -30,4 +36,5 @@ class Graph {
     unordered_map<string, int> airportsIATA_;
     unordered_map<int, Airport> airports_;
     unordered_map<int, vector<Flight>> flights_;
+    //vector<int> topten; //vector will hold ID of top 10 most frequent airports visited
 };
