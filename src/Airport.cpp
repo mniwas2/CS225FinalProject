@@ -9,10 +9,10 @@
 using namespace std;
 
 Airport::Airport()
-: airportID_(0), name_(""), city_(""), country_(""), latitude_(0.0), longitude_(0.0) { }
+: airportID_(-1), name_(""), city_(""), country_(""), IATA_(""), latitude_(0.0), longitude_(0.0) { }
 
-Airport::Airport(int airportID, string name, string city, string country, double latitude, double longitude)
-: airportID_(airportID), name_(name), city_(city), country_(country), latitude_(latitude), longitude_(longitude) { }
+Airport::Airport(int airportID, string name, string city, string country, string IATA, double latitude, double longitude)
+: airportID_(airportID), name_(name), city_(city), country_(country), IATA_(IATA), latitude_(latitude), longitude_(longitude) { }
 
 Airport::Airport(string &line) {
     //working with a csv. Count the commas and add strings to a vector.
@@ -51,8 +51,13 @@ Airport::Airport(string &line) {
                 prevIndex = endIndex + 2;  //bring prevIndex past the comma (+1) and past the " (+1);
             }
             else if (count == 5) {
-                //if this is the 5th comma we've seen so far, we found the IATA. We don't need this
-                //do nothing
+                //if this is the 5th comma we've seen so far, we found the IATA
+                IATA_ = line.substr(prevIndex, endIndex - prevIndex - 1);
+                if (IATA_.length() != 3) {
+                    IATA_ = "";
+                    airportID_ = -1;
+                }
+                prevIndex = endIndex + 2;
             }
             else if (count == 6) {
                 //if this is the 6th comma we've seen so far, we found the ICAO. We don't need this,
@@ -86,6 +91,7 @@ Airport::Airport(string &line) {
 int Airport::getID() const { return airportID_; }
 string Airport::getName() const { return name_; }
 string Airport::getCity() const { return city_; }
+string Airport::getIATA() const { return IATA_; }
 string Airport::getCountry() const { return country_; }
 double Airport::getLatitude() const { return latitude_; }
 double Airport::getLongitude() const { return longitude_; }
@@ -94,6 +100,7 @@ void Airport::setID(int airportID) { airportID_ = airportID; }
 void Airport::setName(string name) { name_ = name; }
 void Airport::setCity(string city) { city_ = city; }
 void Airport::setCountry(string country) { country_ = country; }
+void Airport::setIATA(string IATA) { IATA_ = IATA; }
 void Airport::setLatitude(double latitude) { latitude_ = latitude; }
 void Airport::setLongitude(double longitude) { longitude_ = longitude; }
 

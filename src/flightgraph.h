@@ -23,8 +23,17 @@ class Graph {
     // load airport and flight data information from files
     void readData(string airportFile, string flightFile);
     //vector<int> getTopTen() {return topten;};
+    int getAirportID(string airport_IATA) {return airportsIATA_[airport_IATA];};
+
+    // load airport and flight data information from files
+    void readData(string airportFile, string flightFile);
+
+    vector<Flight> Dijkstra(int source, int destination);
+    std::vector<Flight> BFS(int source, int destination);
+
     private:
     // map storing airports with the airport id as the key, allowing for fast look-up of airports based on airport id
+    unordered_map<string, int> airportsIATA_;
     unordered_map<int, Airport> airports_;
     unordered_map<int, vector<Flight>> flights_;
     //vector<int> topten; //vector will hold ID of top 10 most frequent airports visited

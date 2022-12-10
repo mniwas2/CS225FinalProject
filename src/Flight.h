@@ -34,8 +34,11 @@ class Flight {
 
         // compares two flights by flight disance
         bool operator<(const Flight& other) const;
+        bool operator>(const Flight& other) const;
 
         bool operator==(const Flight& other) const;
+
+        friend std::ostream& operator<< (std::ostream& stream, const Flight& flight);
 
     private:
         int start_id_;
