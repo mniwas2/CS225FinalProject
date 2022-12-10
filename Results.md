@@ -12,6 +12,9 @@ We have test cases for our dataset which are shown below.
     Intended function + output: take in the origin and destination longitude + latitude to return the shortest path possible between two airports
     
     The test case for this includes comparing the expected vector with the given vector of coordinates.  
+    
+    <img width="548" alt="Screen Shot 2022-12-10 at 2 20 04 PM" src="https://user-images.githubusercontent.com/90567203/206873832-82f17892-3836-44e4-896e-1096a5eabbd7.png">
+
 
 3. Page Rank 
     Intended function + output: with the given 15-20 sightseeing locations scattered across the world, the algorithm will return a sorted list of the locations by proximity to the destination airport
