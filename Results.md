@@ -6,6 +6,8 @@ We have test cases for our dataset which are shown below.
 
 1. BFS-Find
     Intended function + output: receive input of given coordinates in order to find the closest airport to location
+    
+    <img width="553" alt="Screen Shot 2022-12-10 at 2 17 50 PM" src="https://user-images.githubusercontent.com/90567203/206873778-d0ddafd2-07dd-4f03-846b-eb7aff4b2b39.png">
 2. Dijkstra's
     Intended function + output: take in the origin and destination longitude + latitude to return the shortest path possible between two airports
     
