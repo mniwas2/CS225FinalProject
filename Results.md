@@ -1,6 +1,8 @@
 # CS225FinalProject
 
 ### The output and correctness of each algorithm:
+We have test cases for our dataset which are shown below. 
+<img width="856" alt="Screen Shot 2022-12-10 at 2 17 07 PM" src="https://user-images.githubusercontent.com/90567203/206873743-cab4a9de-499e-49ee-b381-579d90d66b6a.png">
 
 1. BFS-Find
     Intended function + output: receive input of given coordinates in order to find the closest airport to location
