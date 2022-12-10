@@ -15,7 +15,7 @@ class Airport {
         //constructor for each line from data
         Airport(string &line);
         //constructor given all inputs
-        Airport(int airportID, string name, string city, string country, double latitude, double longitude);
+        Airport(int airportID, string name, string city, string country, string IATA, double latitude, double longitude);
         //no need for a copy constructor since there should never be 2 of the same airport
         //default destructor will work for us
         
@@ -24,6 +24,7 @@ class Airport {
         void setName(string name);
         void setCity(string city);
         void setCountry(string country);
+        void setIATA(string IATA);
         void setLatitude(double latitude);
         void setLongitude(double longitude);
 
@@ -31,6 +32,7 @@ class Airport {
         string getName() const;
         string getCity() const;
         string getCountry() const;
+        string getIATA() const;
         double getLatitude() const;
         double getLongitude() const;
 
@@ -50,6 +52,7 @@ class Airport {
         string name_;
         string city_;
         string country_;
+        string IATA_;
         double latitude_;
         double longitude_;
 
