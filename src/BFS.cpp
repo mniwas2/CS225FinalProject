@@ -17,7 +17,12 @@ std::vector<Flight> getTraversal(unordered_map<int, Airport> airports_, unordere
     std::vector<Flight> toReturn;
     while (!q.empty())
     {
-        v = q.pop();
+        v = q.front();
+        q.pop();
+        if (v.getID() == end.getID()) {
+            break;
+            //we have reached the end of our BFS!
+        }
         for (Flight f : flights_[v.getID()])
         {
             // for all flights at airport v...
