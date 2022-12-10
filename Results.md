@@ -18,7 +18,7 @@ We have test cases for our dataset which are shown below.
     The run time of our algorithm is O(|E|+|V|log(|V|)).
 
 3. Page Rank 
-    Intended function + output: with the given 15-20 sightseeing locations scattered across the world, the algorithm will return a sorted list of the locations by proximity to the destination airport
+    Intended function + output: with the given 15-20 sightseeing locations scattered across the world, the algorithm will return a sorted list of the locations by proximity to the destination airport. In order to better accomplish this task at hand, we wanted to create an intermediate step where we figured out the top 10 ranked airports based on popularity using PageRank as well.
     
     We faced issues in implementing this aspect of our project due to a time constraint and switching our project 1.5 weeks into the term. This algorithm is built off of completing BFS and Dijkstra's so we found it imperative to first complete our Find function and Dijkstra's.
     
