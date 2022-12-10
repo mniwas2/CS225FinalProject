@@ -17,6 +17,7 @@ class Graph {
 
     // returns a reference to the airport in the graph from the airport id
     Airport& getAirport(int airport_id) {return airports_[airport_id];};
+    vector<Flight>& getFlight(int flight_id) {return flights_[flight_id];};
 
     // load airport and flight data information from files
     void readData(string airportFile, string flightFile);
