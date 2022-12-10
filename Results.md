@@ -1,0 +1,10 @@
+# CS225FinalProject
+
+### The output and correctness of each algorithm:
+
+
+### The answer to your leading question:
+
+With our project, we wanted to assist users in their trans-atlantic commutes. We had two main questions that we wanted to answer; the first being "Can we find the nearest airport given an individual's coordinates?" and "How can we calculate the shortest path between two airports?". 
+
+To answer the first question, we decided to take in a set of coordinates containing longitude and latitude in order to know where the user's location was. From there, we use the BFS algorithm to find the airport closest to the nearest coordinates. 
