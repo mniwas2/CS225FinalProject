@@ -25,19 +25,63 @@ TEST_CASE("getAirport", "[Data]") {
     REQUIRE(expected.getLatitude() == actual.getLatitude());
     REQUIRE(expected.getLongitude() == actual.getLongitude());
 }
+TEST_CASE("getAirportEasy", "[Data]") {
+    Graph test = Graph("tests/testairports.txt","tests/testflights.txt");
+    Airport expected = Airport(1,"A","A","A",47.808543,-111.235683);
+    Airport actual = test.getAirport(1);
+    REQUIRE(expected.getName() == actual.getName());
+    REQUIRE(expected.getCity() == actual.getCity());
+    REQUIRE(expected.getCountry() == actual.getCountry());
+    REQUIRE(expected.getLatitude() == actual.getLatitude());
+    REQUIRE(expected.getLongitude() == actual.getLongitude());
+}
 //Was wanting to make a test case for Flights but I think we may have implemented it incorrectly.
-// TEST_CASE("getFlight", "[Data]") {
-//     Graph test = Graph("data/airports.txt","data/routes.txt");
-//     Airport Manits_International_Airport = test.getAirport(3296); //Newark
-//     Airport Anweshas_Mid_Airport = test.getAirport(3631); //O'Hare
-
-//     Flight actual = test.getFlight(3749);
-//     REQUIRE(expected.getName() == actual.getName());
-//     REQUIRE(expected.getCity() == actual.getCity());
-//     REQUIRE(expected.getCountry() == actual.getCountry());
-//     REQUIRE(expected.getLatitude() == actual.getLatitude());
-//     REQUIRE(expected.getLongitude() == actual.getLongitude());
-// }
+TEST_CASE("getFlight", "[Data]") {
+    Graph test = Graph("data/airports.txt","data/routes.txt");
+    Airport Manits_International_Airport = test.getAirport(3296); //Newark
+    Airport Anweshas_Mid_Airport = test.getAirport(3631); //O'Hare
+    Flight actual = test.getDirectFlight(Manits_International_Airport.getID(), Anweshas_Mid_Airport.getID());
+    string line = "AA,24,EWR,3296,ORD,3631,Y,0,E75 CR7";    //ID 3494 gets reIDed to 3296. ID 3830 gets reIDed to 3631
+    Flight expected = Flight(3296,3631,"AA",24,0,0);     
+    REQUIRE(expected.getAirlineID() == actual.getAirlineID());
+    REQUIRE(expected.getStartID() == actual.getStartID());
+    REQUIRE(expected.getDestinationID() == actual.getDestinationID());               
+    REQUIRE(expected.getAirline() == actual.getAirline());
+    REQUIRE(expected.getStops() == actual.getStops());
+}
+TEST_CASE("DetectNoFlight", "[Data]") {
+    Graph test = Graph("tests/testairports.txt","tests/testflights.txt");
+    Airport Manits_International_Airport = test.getAirport(3); //C
+    Airport Rohans_L_Airport = test.getAirport(6); //F
+    Flight actual = test.getDirectFlight(Manits_International_Airport.getID(), Rohans_L_Airport.getID());
+    Flight expected = Flight(-1,-1,"",-1,0,0);  
+    REQUIRE(expected.getStops() == actual.getStops());   
+    REQUIRE(expected.getAirlineID() == actual.getAirlineID());
+    REQUIRE(expected.getStartID() == actual.getStartID());
+    REQUIRE(expected.getDestinationID() == actual.getDestinationID());               
+    REQUIRE(expected.getAirline() == actual.getAirline());
+}
+TEST_CASE("GetFlightEasy", "[Data]") {
+    Graph test = Graph("tests/testairports.txt","tests/testflights.txt");
+    Airport Anweshas_Amazing_Airport = test.getAirport(1); //A
+    Airport Rohans_Rowdy_Runways = test.getAirport(4); //D
+    Flight actual = test.getDirectFlight(Anweshas_Amazing_Airport.getID(), Rohans_Rowdy_Runways.getID());
+    Flight expected = Flight(1,4,"A",0,0,0);  
+    REQUIRE(expected.getStops() == actual.getStops());   
+    REQUIRE(expected.getAirlineID() == actual.getAirlineID());
+    REQUIRE(expected.getStartID() == actual.getStartID());
+    REQUIRE(expected.getDestinationID() == actual.getDestinationID());               
+    REQUIRE(expected.getAirline() == actual.getAirline());
+}
+TEST_CASE("TopTenAirports", "[Data]") {
+    Graph test = Graph("data/airports.txt","data/routes.txt");
+    Airport Manits_International_Airport = test.getAirport(3296); //Newark
+    Airport Sofias_Speedy_Planes = test.getAirport(4008); //Columbus Metropolitan Airport
+    //vector<int> topten = test.getTopTen();
+    //for (int i = 0; i < 10; i++) {
+    //    cout<<topten[i]<<endl;
+    //}
+}
 
 // TEST_CASE("BFS1", "[BFS]") {
 //     Graph test = Graph("test/testairports.txt","test/testroutes.txt");

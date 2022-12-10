@@ -7,7 +7,7 @@ using namespace std;
 class Flight {
     public:
         // default constructor
-        Flight() { start_id_ = 0; destination_id_ = 0;};
+        Flight() { start_id_ = -1; destination_id_ = -1; airline_id_ = -1; airline_ = ""; stops_ = 0; distance_ = 0;};
         //constructor for each line from data
         Flight(string &line);
         //constructor given all inputs
