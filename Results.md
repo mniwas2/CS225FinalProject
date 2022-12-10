@@ -6,9 +6,12 @@
     Intended function + output: receive input of given coordinates in order to find the closest airport to location
 2. Dijkstra's
     Intended function + output: take in the origin and destination longitude + latitude to return the shortest path possible between two airports
+    
+    The test case for this includes comparing the expected vector with the given vector of coordinates.  
 
 3. Page Rank 
     Intended function + output: with the given 15-20 sightseeing locations scattered across the world, the algorithm will return a sorted list of the locations by proximity to the destination airport
+    
 
 
 ### The answer to your leading question:
