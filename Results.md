@@ -24,3 +24,6 @@ To answer the first question, we created a "Find" function. We decided to take i
 
 
 Our next algorithm was using Dijkstra's. This algorithm takes into consideration the origin and destination airports to then calculate the shortest path between 2 airports. The nodes are coordinates containing the longitude and latitudes of airports while the edges are only the existing routes between 2 airports.  
+
+
+Our last algorithm uses PageRank. We decided to input 15-20 locations that are known as popular sightseeing locations across the world. With that, we would produce a ranked list of these locations based on their proximity to the final destination.
