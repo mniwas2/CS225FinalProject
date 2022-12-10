@@ -12,6 +12,8 @@
 3. Page Rank 
     Intended function + output: with the given 15-20 sightseeing locations scattered across the world, the algorithm will return a sorted list of the locations by proximity to the destination airport
     
+    We faced issues in implementing this aspect of our project due to a time constraint and switching our project 1.5 weeks into the term. 
+    
 
 
 ### The answer to your leading question:
