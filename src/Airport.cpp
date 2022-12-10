@@ -3,6 +3,7 @@
 #include <string>
 #include <unordered_map>
 #include <iostream>
+#include <cmath>
 // #include "Flight.h" //class yet to be made
 
 using namespace std;
