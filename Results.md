@@ -2,6 +2,14 @@
 
 ### The output and correctness of each algorithm:
 
+1. BFS-Find
+    Intended function + output: receive input of given coordinates in order to find the closest airport to location
+2. Dijkstra's
+    Intended function + output: take in the origin and destination longitude + latitude to return the shortest path possible between two airports
+
+3. Page Rank 
+    Intended function + output: 
+
 
 ### The answer to your leading question:
 
