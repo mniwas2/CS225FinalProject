@@ -48,7 +48,7 @@ TEST_CASE("getAirport", "[Data]") {
 }
 
 TEST_CASE("BFS1", "[BFS]") {
-    Graph test = Graph("test/testairports.txt","test/testroutes.txt");
+    Graph test = Graph("data/airports.txt","data/routes.txt");
     vector<int> expected = vector<int>({2811, 2833});
     vector<Flight> actual = test.BFS(2811, 2833);
     REQUIRE(compareVects(expected, actual)==true);
