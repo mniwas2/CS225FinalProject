@@ -7,6 +7,8 @@ Fall 2022 CS 225 Final Project with Manit, Sofia, Rohan, Anwesha
 * rohanjs3
 * sofials3
 
+Project Slideshow: [Google slides](https://docs.google.com/presentation/d/1NZnctIMohUVR1nFTgaYSXO3sqevV4qxHxNeXtmXjv_M/edit?usp=sharing)
+
 # How does our project work?
 This is the link to our repository: 
 
