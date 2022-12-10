@@ -16,3 +16,6 @@ Into your terminal type in: git clone
 
 Our project essentially aims to have 2 main functions. We take in a given individual's coordinates to then find the nearest airport. We also find the shortest path between 2 airports based on only existing routes. With that, we aim use a pre-created set of 15-20 popular sightseeing locations which we rank in a sorted manner based on proximity to the desination airport. 
 # How to use our program?
+
+
+# Exisiting files in our repository
