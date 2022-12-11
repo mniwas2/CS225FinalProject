@@ -104,6 +104,7 @@ Flight Graph::getDirectFlight(int startID, int endID) {
 vector<Flight> Graph::Dijkstra(int source, int destination)
 {
     // store the min distance to each node starting at source node
+    std::cout<<source<<" "<<destination<<std::endl;
     struct Path
     {
         double mindistance;
@@ -135,10 +136,11 @@ vector<Flight> Graph::Dijkstra(int source, int destination)
     {
         std::pair<double, Flight> top = queue.top();
         int destID = top.second.getDestinationID();
-        if (mindistance.at(destID - 1).mindistance >= top.first)
+        queue.pop();
+        if (mindistance.at(destID - 1).mindistance == top.first)
         {
-            mindistance.at(destID - 1).mindistance = top.first;
-            mindistance.at(destID - 1).lastflight = top.second;
+            // mindistance.at(destID - 1).mindistance = top.first;
+            // mindistance.at(destID - 1).lastflight = top.second;
             for (Flight flight : flights_[destID])
             {
                 double distanceToSource = top.second.getDistance() + flight.getDistance();
@@ -151,21 +153,29 @@ vector<Flight> Graph::Dijkstra(int source, int destination)
                 }
                 else if (mindistance.at(flight.getDestinationID() - 1).mindistance > distanceToSource)
                 {
+                    mindistance.at(flight.getDestinationID() - 1).mindistance = distanceToSource;
+                    mindistance.at(flight.getDestinationID() - 1).lastflight = flight;
                     queue.push(trip);
                 }
             }
         }
-        queue.pop();
+        
     }
     if (!queue.empty())
     {
-        // create vector of flights
         vector<Flight> reverseResult;
         reverseResult.push_back(queue.top().second);
         int prevNode = reverseResult.at(0).getStartID();
+
+        //{1319,1320}
+        // {1322,1319}
+        // {1319,1322}
+        std::cout<<reverseResult.at(0)<<std::endl;
+        std::cout<<mindistance.at(prevNode - 1).lastflight<<std::endl;
         while (prevNode != source)
         {
             reverseResult.push_back(mindistance.at(prevNode - 1).lastflight);
+            //std::cout<<mindistance.at(prevNode - 1).lastflight<<std::endl;
             prevNode = reverseResult.at(reverseResult.size() - 1).getStartID();
         }
         // for (unsigned i = 0; i < reverseResult.size(); i++) {
