@@ -87,8 +87,12 @@ void Graph::readData(string airportFile, string flightFile)
             // }
         }
         flightf.close();
+    } else
+    {
+        std::cout << "flight file not open" << std::endl;
     }
 }
+
 Flight Graph::getDirectFlight(int startID, int endID) {
     Flight f = Flight();
     vector<Flight> flights = getFlights(startID);
@@ -99,11 +103,7 @@ Flight Graph::getDirectFlight(int startID, int endID) {
     }
     return f;
 }
-    else
-    {
-        std::cout << "flight file not open" << std::endl;
-    }
-}
+
 
 vector<Flight> Graph::Dijkstra(int source, int destination)
 {
@@ -139,43 +139,35 @@ vector<Flight> Graph::Dijkstra(int source, int destination)
     {
         std::pair<double, Flight> top = queue.top();
         int destID = top.second.getDestinationID();
-        if (mindistance.at(destID - 1).mindistance >= top.first)
+        queue.pop();
+        if (mindistance.at(destID - 1).mindistance == top.first)
         {
-            mindistance.at(destID - 1).mindistance = top.first;
-            mindistance.at(destID - 1).lastflight = top.second;
             for (Flight flight : flights_[destID])
             {
-                double distanceToSource = top.second.getDistance() + flight.getDistance();
+                double distanceToSource = top.first + flight.getDistance();
                 std::pair<double, Flight> trip = std::make_pair(distanceToSource, flight);
-                if (mindistance.at(flight.getDestinationID() - 1).mindistance == -1)
+                if (mindistance.at(flight.getDestinationID() - 1).mindistance == -1 || mindistance.at(flight.getDestinationID() - 1).mindistance > distanceToSource)
                 {
                     mindistance.at(flight.getDestinationID() - 1).mindistance = distanceToSource;
                     mindistance.at(flight.getDestinationID() - 1).lastflight = flight;
                     queue.push(trip);
                 }
-                else if (mindistance.at(flight.getDestinationID() - 1).mindistance > distanceToSource)
-                {
-                    queue.push(trip);
-                }
             }
         }
-        queue.pop();
+        
     }
+
     if (!queue.empty())
     {
-        // create vector of flights
         vector<Flight> reverseResult;
         reverseResult.push_back(queue.top().second);
         int prevNode = reverseResult.at(0).getStartID();
+
         while (prevNode != source)
         {
             reverseResult.push_back(mindistance.at(prevNode - 1).lastflight);
-            prevNode = reverseResult.at(reverseResult.size() - 1).getStartID();
+            prevNode = mindistance.at(prevNode - 1).lastflight.getStartID();
         }
-        // for (unsigned i = 0; i < reverseResult.size(); i++) {
-        //     std::cout<<reverseResult.at(i)<<", ";
-        // }
-        // std::cout<<std::endl;
         std::reverse(reverseResult.begin(), reverseResult.end());
         return reverseResult;
     }

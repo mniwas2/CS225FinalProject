@@ -48,21 +48,7 @@ TEST_CASE("getAirport", "[Data]") {
     REQUIRE(expected.getLongitude() == actual.getLongitude());
     REQUIRE(expected.getID() == test.getAirportID("HLJ"));
 }
-TEST_CASE("getAirportEasy", "[Data]") {
-    Graph test = Graph("tests/testairports.txt","tests/testflights.txt");
-    Airport expected = Airport(1,"A","A","A",47.808543,-111.235683);
-    Airport actual = test.getAirport(1);
-    REQUIRE(expected.getName() == actual.getName());
-    REQUIRE(expected.getCity() == actual.getCity());
-    REQUIRE(expected.getCountry() == actual.getCountry());
-    REQUIRE(expected.getLatitude() == actual.getLatitude());
-    REQUIRE(expected.getLongitude() == actual.getLongitude());
-TEST_CASE("BFS1", "[BFS]") {
-    Graph test = Graph("data/airports.txt","data/routes.txt");
-    vector<int> expected = vector<int>({test.getAirportID("AER"), test.getAirportID("KZN")});
-    vector<Flight> actual = test.BFS(test.getAirportID("AER"), test.getAirportID("KZN"));
-    REQUIRE(compareVects(expected, actual)==true);
-}
+
 //Was wanting to make a test case for Flights but I think we may have implemented it incorrectly.
 TEST_CASE("getFlight", "[Data]") {
     Graph test = Graph("data/airports.txt","data/routes.txt");
@@ -110,38 +96,19 @@ TEST_CASE("TopTenAirports", "[Data]") {
     //    cout<<topten[i]<<endl;
     //}
 }
+TEST_CASE("BFS1", "[BFS]") {
+    Graph test = Graph("data/airports.txt","data/routes.txt");
+    vector<int> expected = vector<int>({test.getAirportID("AER"), test.getAirportID("KZN")});
+    vector<Flight> actual = test.BFS(test.getAirportID("AER"), test.getAirportID("KZN"));
+    REQUIRE(compareVects(expected, actual)==true);
+}
 
-// TEST_CASE("BFS1", "[BFS]") {
-//     Graph test = Graph("test/testairports.txt","test/testroutes.txt");
-//     vector<int> expected = vector<int>({2811, 2833});
-//     vector<Flight> actual = test.BFS(2811, 2833);
-//     REQUIRE(compareVects(expected, actual)==true);
-// }
-
-// TEST_CASE("BFS2", "[BFS]") {
-//     Graph test = Graph("tests/testairports.txt","tests/testflights.txt");
-//     vector<int> expected = vector<int>({1, 3, 5});
-//     vector<Flight> actual = test.BFS(1, 5);
-//     REQUIRE(compareVects(expected, actual)==true);
-// }
-
-// TEST_CASE("Dijkstras1", "[D1]") {
-//     Graph test = Graph("tests/testairports.txt","tests/testflights.txt");
-//     vector<int> expected = vector<int>({1, 4, 2, 5});
-//     vector<Flight> actual = test.Dijkstra(1, 5); // fix this when Dijkstra is implemented
-//     REQUIRE(compareVects(expected, actual)==true);
-// }
-
-bool compareVects(const vector<int>& v1, const vector<Flight>& v2) {
-    if (v1.size() + 1 != v2.size()) {
-        return false;
-    }
-    for (unsigned i = 0; i<v2.size(); i++) {
-        if (!(v1.at(i) == v2.at(i).getStartID()) && v1.at(i + 1) == v2.at(i).getDestinationID()) {
-            return false;
-        }
-    }
-    return true;
+TEST_CASE("BFS2", "[BFS]") {
+    Graph test = Graph("tests/testairports.txt","tests/testflights.txt");
+    vector<int> expected = vector<int>({1, 3, 5});
+    vector<Flight> actual = test.BFS(1, 5);
+    REQUIRE(compareVects(expected, actual)==true);
+}
 
 TEST_CASE("Dijkstra1", "[D1]") {
     Graph test = Graph("tests/testairports.txt","tests/testflights.txt");
