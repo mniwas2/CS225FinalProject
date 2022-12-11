@@ -39,6 +39,14 @@ int main()
         cout << startAirport.getName() << "->" << endAiport.getName() << endl;
 
     }
-
+//unordered_map<int, vector<Flight>>::iterator it = ;
+// unordered_map<int, vector<Flight>>::iterator it;
+// for (it = test.getMap().begin(); it != test.getMap().end(); it++)
+// {
+//     for(unsigned i = 1; i < it->second.size(); i = i+2){
+//         string temp = (test.getAirport(it->second[i].getStartID())).getIATA() + "-" + (test.getAirport(it->second[i].getDestinationID())).getIATA();
+//         std::cout << temp << std::endl;
+//     }
+// }
     return 0;
 }

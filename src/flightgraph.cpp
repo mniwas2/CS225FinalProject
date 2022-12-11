@@ -11,6 +11,9 @@ Graph::Graph(string airportFile, string flightFile)
 {
     readData(airportFile, flightFile);
 }
+unordered_map<int, vector<Flight>> Graph::getMap(){
+    return flights_;
+}
 
 // load airport and flight data information from files
 void Graph::readData(string airportFile, string flightFile)

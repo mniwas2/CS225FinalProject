@@ -24,7 +24,7 @@ class Graph {
 
     vector<Flight> Dijkstra(int source, int destination);
     std::vector<Flight> BFS(int source, int destination);
-
+unordered_map<int, vector<Flight>> getMap();
     private:
     // map storing airports with the airport id as the key, allowing for fast look-up of airports based on airport id
     unordered_map<string, int> airportsIATA_;
