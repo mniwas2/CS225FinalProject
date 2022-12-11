@@ -16,7 +16,7 @@ Flight::Flight(string &line) {
             if (count == 1) {
                 //if this is the first comma we've seen so far, then we found the airline.
                 //for substring, length will be endIndex - prevIndex + 1
-                airline_ = line.substr(prevIndex, endIndex - prevIndex + 1);
+                airline_ = line.substr(prevIndex, endIndex);
                 prevIndex = endIndex + 1;  //bring prevIndex past the comma (+1);
             }
             else if (count == 2) {
