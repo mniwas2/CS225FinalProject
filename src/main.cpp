@@ -35,8 +35,8 @@ int main()
     for (unsigned i = 0; i < result.size(); i++)
     {
         Airport startAirport = test.getAirport(result[i].getStartID());
-        Airport endAiport = test.getAirport(result[i].getDestinationID());
-        cout << startAirport.getName() << "->" << endAiport.getName() << endl;
+        Airport endAirport = test.getAirport(result[i].getDestinationID());
+        cout << startAirport.getName() << " -> " << endAirport.getName() << endl;
 
     }
 //unordered_map<int, vector<Flight>>::iterator it = ;

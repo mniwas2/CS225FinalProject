@@ -52,11 +52,11 @@ TEST_CASE("getAirport", "[Data]") {
 //Was wanting to make a test case for Flights but I think we may have implemented it incorrectly.
 TEST_CASE("getFlight", "[Data]") {
     Graph test = Graph("data/airports.txt","data/routes.txt");
-    Airport Manits_International_Airport = test.getAirport(3296); //Newark
-    Airport Anweshas_Mid_Airport = test.getAirport(3631); //O'Hare
+    Airport Manits_International_Airport = test.getAirport(1683);
+    Airport Anweshas_Mid_Airport = test.getAirport(1675);
     Flight actual = test.getDirectFlight(Manits_International_Airport.getID(), Anweshas_Mid_Airport.getID());
-    string line = "AA,24,EWR,3296,ORD,3631,Y,0,E75 CR7";    //ID 3494 gets reIDed to 3296. ID 3830 gets reIDed to 3631
-    Flight expected = Flight(3296,3631,"AA",24,0,0);     
+    string line = "PK,3871,PZH,2233,UET,2221,,0,ATR";  //we needed to Re-ID the airports to eliminate those without IATAs
+    Flight expected = Flight(1683,1675,"PK",3871,0,0);     
     REQUIRE(expected.getAirlineID() == actual.getAirlineID());
     REQUIRE(expected.getStartID() == actual.getStartID());
     REQUIRE(expected.getDestinationID() == actual.getDestinationID());               
@@ -65,8 +65,8 @@ TEST_CASE("getFlight", "[Data]") {
 }
 TEST_CASE("DetectNoFlight", "[Data]") {
     Graph test = Graph("tests/testairports.txt","tests/testflights.txt");
-    Airport Manits_International_Airport = test.getAirport(3); //C
-    Airport Rohans_L_Airport = test.getAirport(6); //F
+    Airport Manits_International_Airport = test.getAirport(1); //A
+    Airport Rohans_L_Airport = test.getAirport(5); //E
     Flight actual = test.getDirectFlight(Manits_International_Airport.getID(), Rohans_L_Airport.getID());
     Flight expected = Flight(-1,-1,"",-1,0,0);  
     REQUIRE(expected.getStops() == actual.getStops());   
@@ -109,13 +109,25 @@ TEST_CASE("BFS2", "[BFS]") {
     vector<Flight> actual = test.BFS(1, 5);
     REQUIRE(compareVects(expected, actual)==true);
 }
+TEST_CASE("BFSHard", "[BFS]") {
+    Graph test = Graph("data/airports.txt","data/routes.txt");
+    vector<int> expected = vector<int>({2651, 2873, 412, 2292, 4158}); 
+    vector<Flight> actual = test.BFS(2651, 4158);  //from Trenton, New Jersey to Guwahati, Assam, India
+    REQUIRE(compareVects(expected, actual)==true);
+}
 
-TEST_CASE("Dijkstra1", "[D1]") {
+TEST_CASE("Dijkstra1", "[Dijkstra]") {
     Graph test = Graph("tests/testairports.txt","tests/testflights.txt");
     vector<int> expected = vector<int>({1, 4});
     vector<Flight> actual = test.Dijkstra(1, 4);
     REQUIRE(compareVects(expected, actual)==true);
     expected = vector<int>({1, 4, 2, 5});
     actual = test.Dijkstra(1, 5);
+    REQUIRE(compareVects(expected, actual)==true);
+}
+TEST_CASE("DijkstraHard", "[Dijkstra]") {
+    Graph test = Graph("data/airports.txt","data/routes.txt");
+    vector<int> expected = vector<int>({2651, 2689, 188, 1665, 2371, 4158});
+    vector<Flight> actual = test.Dijkstra(2651, 4158);  //from Trenton, New Jersey to Guwahati, Assam, India
     REQUIRE(compareVects(expected, actual)==true);
 }
