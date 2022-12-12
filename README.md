@@ -18,5 +18,9 @@ Our project essentially aims to have 2 main functions. We take in a given indivi
 
 # How to use our program?
 
+1. First clone our github repo: gh repo clone mniwas2/CS225FinalProject
+2. Run make exec
+3. Run bin/exec
+4. Get to demo our project and figure out the optimal flight routes between origin and final destination
 
 
