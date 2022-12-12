@@ -19,4 +19,4 @@ Our project essentially aims to have 2 main functions. We take in a given indivi
 # How to use our program?
 
 
-# Exisiting files in our repository
+
