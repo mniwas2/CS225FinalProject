@@ -26,6 +26,9 @@ This was an example of our project passing all of our given test cases to prove 
 
 ![image](https://user-images.githubusercontent.com/90567203/207161944-b68c000e-4e54-489e-96ad-de835f4fe703.png)
 
+Finally, here is a working example of our project. As we are located in Champaign, we wanted to figure out how to get to our group member Manit's local airport in India. 
+![image](https://user-images.githubusercontent.com/90567203/207171422-27ebaabf-5a30-469c-9470-f483209820a1.png)
+
 
 
 ### The answer to your leading question:
