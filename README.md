@@ -19,8 +19,11 @@ Our project essentially aims to have 2 main functions. We take in a given indivi
 # How to use our program?
 
 1. First clone our github repo: gh repo clone mniwas2/CS225FinalProject
-2. Run make exec
-3. Run bin/exec
-4. Get to demo our project and figure out the optimal flight routes between origin and final destination
+<img width="1276" alt="Screen Shot 2022-12-12 at 4 40 19 PM" src="https://user-images.githubusercontent.com/90567203/207170606-3bec15c8-fe85-4d4e-b492-3466d1badbd3.png">
+
+
+3. Run make exec
+4. Run bin/exec
+5. Get to demo our project and figure out the optimal flight routes between origin and final destination
 
 
