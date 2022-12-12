@@ -32,7 +32,7 @@ This was an example of our project passing all of our given test cases to prove 
 
 With our project, we wanted to assist users in their trans-atlantic commutes. We had two main questions that we wanted to answer; the first being "Can we find the nearest airport given an individual's coordinates?" and "How can we calculate the shortest path between two airports?". 
 
-To answer the first question, we created a "Find" function. We decided to take in two IDS before using our BFS function.
+To answer the first question, we created a "Find" function. We decided to take in two IATAs before using our BFS function in order to get a vector of all the flights visited in the path. Our BFS implementation maintains a queue of flights. 
 
 
 Our next algorithm was using Dijkstra's. This algorithm takes into consideration the origin and destination airports to then calculate the shortest path between 2 airports. The nodes are coordinates containing the longitude and latitudes of airports while the edges are only the existing routes between 2 airports.  
